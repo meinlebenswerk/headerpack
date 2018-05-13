@@ -4,7 +4,7 @@ This utility takes in a file and converts it into a includeable .h file, so you 
 
 ## syntax::
 The syntax is pretty easy:
+
 node headerpack.js <filename1 filename2 ...>
-All the files will be put into one .h file (header.h);
-The variables themselves are put saved as "static const unsigned char xyz[] PROGMEM", but you are free to hack that ;)
-Where xyz is the filename, ('.'s are replaced by underscores);
+
+All the files will be put into one .h file (header.h). The variables themselves are put saved as "static const unsigned char xyz[] PROGMEM", but you are free to hack that (Just have a look at headerpack.js and you should find out, how). Here xyz denotes the filename, ('.'s are replaced by underscores). Also now a second variable is included, which is named xyz_size and is an int, it holds the size of the headerified file, for easier memcpy and so on!
