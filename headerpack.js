@@ -1,10 +1,13 @@
 const fs = require('fs');
 const header = 'static const unsigned char';
 const suffix = 'PROGMEM';
+const size_header = 'static const int ';
+const size_suffix = 'PROGMEM';
 const output = './header.h';
 
 var i = 1;
 var reading = 0;
+var fsize   = 0;
 var writestream = fs.createWriteStream(output, {flags:'a'});
 
 
@@ -22,6 +25,7 @@ function convertfile(fname){
   var varname = fname.replace(".","_");
   var content = `${header} ${varname}[] ${suffix}= {`;
   writestream.write(content);
+  fsize = 0;
 
   var readstream = fs.createReadStream(fname);
   readstream.setEncoding('hex');
@@ -31,6 +35,7 @@ function convertfile(fname){
     var hbytes = chunk.match(/(.{1,2})/g);
     for(var ii = 0;ii<hbytes.length;ii++){
       //console.log(`0x${hbytes[ii]},`);
+      fsize ++;
       if(ii == 0 && reading==1){
         writestream.write(',');
       }
@@ -46,6 +51,7 @@ function convertfile(fname){
   readstream.on('end', () => {
     reading = 0;
     writestream.write('};\n ');
+    writestream.write(`${size_header} ${varname}_size ${size_suffix} = ${fsize};\n`);
     processNextFile();
   });
 };
