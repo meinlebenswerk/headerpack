@@ -1,0 +1,11 @@
+{
+  "name": "headerpack",
+  "version": "1.0.0",
+  "description": "This utility takes in a file and converts it into a includeable .h file, so you can put any file into your ESP8266/32 for displaying it on the web ect, ect... ",
+  "main": "headerpack.js",
+  "scripts": {
+    "test": "node headerpack.js"
+  },
+  "author": "niacino <npm.eckert@tum.de>",
+  "license": "MIT"
+}

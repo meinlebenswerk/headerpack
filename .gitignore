@@ -1,3 +1,12 @@
+# Test data::
+invaders.e
+invaders.f
+invaders.g
+invaders.h
+
+# runtime fragments::
+header.h
+
 # Logs
 logs
 *.log
